@@ -7,32 +7,30 @@
 using namespace std;
 
 bool is_binary(long long number)
+// This function takes a long long integer and returns true if it's binary and false if it's not
 {
-    int num;
+    int remainder;
 
     while (number > 0)
     {
-        num = number % 10;
+        remainder = number % 10;
 
-        if ((num != 0) && (num != 1))
+        if ((remainder != 0) && (remainder != 1)) // Remainder of a binary number divided by 10 should always be 0 or 1
         {
-            cout << "not binary\n";
             return false;
         }
         number = number / 10;
 
         if (number == 0)
         {
-            cout << "is binary\n";
             return true;
         }
     }
-    cout << "is binary\n";
-
     return true;
 }
 
 bool is_number(const string &str)
+// This function acceps a string and loop for it checking if every char is a digit. Returns true if so
 {
     for (char const &c : str)
     {
@@ -43,6 +41,8 @@ bool is_number(const string &str)
 }
 
 string ask_encode_type()
+// This function prints user instructions for defining a conversion type and processes the input
+// It returns the encode type if it's either 'e' or 'd' and returns 'wrong_param' otherwise 
 {
     string encode_type;
 
@@ -69,6 +69,8 @@ So what will it be? (d/e) ";
 }
 
 string ask_input_number(string encode_type)
+// This function prints user instructions for parsing a number to encode\decode and processes the input string
+// It returns the number if the string represents a number and returns 'wrong_param' otherwise 
 {
     string input_number;
 
