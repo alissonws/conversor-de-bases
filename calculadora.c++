@@ -96,9 +96,19 @@ string ask_input_number(string encode_type)
 
 void decode_binary(string binary_number)
 {
-    int output_number = 0, number_index = 0;
+    int output_number = 0, number_index = binary_number.length() -1;
 
-    // Finish decode algorithm
+
+    for (char const &c: binary_number) {
+        const int positional_number = c - '0';
+
+
+        output_number += pow(2, number_index) * positional_number;
+
+        number_index--;
+    }
+
+    cout << "\n\nResult: " << output_number << "\n\n";
 }
 
 void encode_to_binary(string number_to_encode)
@@ -120,7 +130,7 @@ void encode_to_binary(string number_to_encode)
     }
 
 
-    cout << output_binary_number;
+    cout << "\n\nResult: " << output_binary_number << "\n\n";
 }
 
 int main()
