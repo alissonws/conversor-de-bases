@@ -55,6 +55,7 @@ So what will it be? (d/e) ";
 
     cout << question;
     cin >> encode_type;
+    cin.clear();
 
     if (encode_type == "e" || encode_type == "d")
     {
@@ -81,6 +82,7 @@ string ask_input_number(string encode_type)
     cout << question;
 
     cin >> input_number;
+    cin.clear();
 
     if (is_number(input_number))
     {
@@ -142,21 +144,30 @@ int main()
 
     cout << welcome; // Print welcome message
 
-    while (encode_type == "wrong_param" || encode_type.empty()) // Ask for coding mode until a valid value is parsed
+
+    while (true)
     {
-        encode_type = ask_encode_type();
+        input_number.clear();
+        encode_type.clear();
+        
+        while (encode_type == "wrong_param" || encode_type.empty()) // Ask for coding mode until a valid value is parsed
+        {
+            encode_type = ask_encode_type();
+        }
+
+        const string encode_type_name = (encode_type == "e") ? "Encode" : "Decode";
+
+        cout << "\nOk! " + encode_type_name + " mode, right?\n\n"; // Print selected mode
+
+        while (input_number == "wrong_param" || input_number.empty()) // Ask for number to decode/encode until a valid number is parsed
+        {
+            input_number = ask_input_number(encode_type);
+        }
+
+        (encode_type == "e") ? encode_to_binary(input_number) : decode_binary(input_number); // Process input number and print result
+
+        cout << "Press [Ctrl + C] to exit or keep converting numbers\n\n";
     }
-
-    const string encode_type_name = (encode_type == "e") ? "Encode" : "Decode";
-
-    cout << "\nOk! " + encode_type_name + " mode, right?\n\n"; // Print selected mode
-
-    while (input_number == "wrong_param" || input_number.empty()) // Ask for number to decode/encode until a valid number is parsed
-    {
-        input_number = ask_input_number(encode_type);
-    }
-
-    (encode_type == "e") ? encode_to_binary(input_number) : decode_binary(input_number); // Process input number and print result
 
     return 0;
 }
