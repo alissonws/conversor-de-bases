@@ -131,6 +131,7 @@ void encode_to_binary(string number_to_encode)
         num_as_long = division;
     }
 
+    reverse(output_binary_number.begin(), output_binary_number.end());
 
     cout << "\n\nResult: " << output_binary_number << "\n\n";
 }
